@@ -24,14 +24,14 @@ public class Task {
     @Schema(name = "Descrição da tarefa deve possuir pelo menos 10 caracteres")
     @Size(min = 10, message = "Descrição da tarefa deve possuir pelo menos 10 caracteres")
             private String description;
-            private Boolean completed;
+            private Boolean completa;
             public Task(String description){
         this.description = description;
     }
     @Override
     public String toString() {
-        return "Task [id=" + id + ", description=" + description + ", completed=" +
-                completed + "]";
+        return "Task [id=" + id + ", description=" + description + ", completa=" +
+                completa + "]";
     }
 
     //Getters e Setters
@@ -51,11 +51,11 @@ public class Task {
         this.description = description;
     }
 
-    public Boolean getCompleted() {
-        return completed;
+    public Boolean getCompleta() {
+        return completa;
     }
 
-    public void setCompleted(Boolean completed) {
-        this.completed = completed;
+    public void setCompleta(Boolean completa) {
+        this.completa = completa;
     }
 }
