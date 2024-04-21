@@ -1,10 +1,9 @@
 package com.labdesoft.roteiro01.entity;
 
+import com.labdesoft.roteiro01.entity.enums.Prioridade;
+import com.labdesoft.roteiro01.entity.enums.TipoTarefa;
 import io.swagger.v3.oas.annotations.media.Schema;
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 import jakarta.validation.constraints.Size;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -16,46 +15,32 @@ import lombok.Setter;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-@Schema(description = "Todos os detalhes sobre uma tarefa. ")
+@Schema(description = "Todos os detalhes sobre uma tarefa.")
 public class Task {
+
+
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
     @Schema(name = "Descrição da tarefa deve possuir pelo menos 10 caracteres")
     @Size(min = 10, message = "Descrição da tarefa deve possuir pelo menos 10 caracteres")
-            private String description;
-            private Boolean completa;
-            public Task(String description){
+    private String description;
+
+    private Boolean completa;
+
+    // Novos campos
+    @Enumerated(EnumType.STRING)
+    private TipoTarefa tipo;
+
+    @Enumerated(EnumType.STRING)
+    private Prioridade prioridade;
+
+    public Task(String description, TipoTarefa tipo, Prioridade prioridade) {
         this.description = description;
-    }
-    @Override
-    public String toString() {
-        return "Task [id=" + id + ", description=" + description + ", completa=" +
-                completa + "]";
+        this.tipo = tipo;
+        this.prioridade = prioridade;
+        this.completa = false;
     }
 
-    //Getters e Setters
-    public Long getId() {
-        return id;
-    }
 
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public String getDescription() {
-        return description;
-    }
-
-    public void setDescription(String description) {
-        this.description = description;
-    }
-
-    public Boolean getCompleta() {
-        return completa;
-    }
-
-    public void setCompleta(Boolean completa) {
-        this.completa = completa;
-    }
 }
